@@ -1,4 +1,5 @@
-import { Game, AUTO, Scale} from "phaser";
+
+import { Game, AUTO, Scale, Scene} from "phaser";
 
 export function launch() {
     return new Game({
@@ -16,4 +17,18 @@ export function launch() {
       },
       scene: MainScene,
     });
+  }
+
+  export class MainScene extends Scene {
+    constructor () {
+      super({ key: 'MainScene' })
+    }
+
+    create () {
+        this.add.text(100, 100, "Hello Phaser!", {
+            font: "24px Courier",
+            fill: "#ffffff",
+        });
+    }
+
   }

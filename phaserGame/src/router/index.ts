@@ -2,7 +2,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/tabs/tab1',
-    redirect: '/tabs/play',
+    redirect: '/tabs/play'
   },
   {
     path: '/tabs/',

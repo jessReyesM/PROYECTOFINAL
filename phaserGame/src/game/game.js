@@ -1,4 +1,3 @@
-
 import { Game, AUTO, Scale, Scene} from "phaser";
 
 export function launch() {

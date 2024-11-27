@@ -1,4 +1,5 @@
-import { Game, AUTO, Scale, Scene} from "phaser";
+import { Game, AUTO, Scale } from "phaser";
+import { PlayScene } from "./PlayScene.js";
 
 export function launch() {
     return new Game({
@@ -14,20 +15,7 @@ export function launch() {
       physics: {
         default: "arcade",
       },
-      scene: MainScene,
+      
+      scene: PlayScene,
     });
-  }
-
-  export class MainScene extends Scene {
-    constructor () {
-      super({ key: 'MainScene' })
-    }
-
-    create () {
-        this.add.text(100, 100, "Hello Phaser!", {
-            font: "24px Courier",
-            fill: "#ffffff",
-        });
-    }
-
   }

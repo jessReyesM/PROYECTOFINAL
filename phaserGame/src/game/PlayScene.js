@@ -100,7 +100,24 @@ export class PlayScene extends Scene {
     callbackScope: this,
     loop: true,
   });
+    
+  this.bombs = this.physics.add.group({
+    gravityY: 900,
+  });
   
+  const createBomb = () => {
+    const x = Math.random() * this.screenWidth;
+    const bomb = this.bombs.create(x, 0, 'bomb');
+    bomb.setScale(2).refreshBody();
+  }
+  
+  const createBombLoop = this.time.addEvent({
+    // random number between 4.5 and 5 seconds
+    delay: Math.floor(Math.random() * (5000 - 4500 + 1)) + 4500,
+    callback: createBomb,
+    callbackScope: this,
+    loop: true,
+  });
      }
   
      update () {

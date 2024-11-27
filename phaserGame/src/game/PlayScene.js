@@ -84,6 +84,22 @@ export class PlayScene extends Scene {
      this.rightArrow.on('pointerup', () => {
      this.moveRight = false;
    });
+   this.stars = this.physics.add.group({
+    gravityY: 300,
+  });
+  
+  const createStar = () => {
+    const x = Math.random() * this.screenWidth;
+    const star = this.stars.create(x, 0, 'star');
+  }
+  
+  const createStarLoop = this.time.addEvent({
+    // random number between 1 and 1.2 seconds
+    delay: Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000,
+    callback: createStar,
+    callbackScope: this,
+    loop: true,
+  });
   
      }
   

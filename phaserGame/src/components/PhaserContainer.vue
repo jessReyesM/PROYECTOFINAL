@@ -1,8 +1,8 @@
 <template>
-    <div id="game">
-      <ion-button v-if="showButton" @click="handleClickStart">Start
-      </ion-button>
-    </div>
+  <div id="game">
+    <ion-button v-if="showButton" @click="handleClickStart">Start
+    </ion-button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -26,7 +26,6 @@ function handleClickStart() {
   launch();
 }
 </script>
-
 
 <style scoped>
 #game {

@@ -60,84 +60,88 @@ export class PlayScene extends Scene {
           repeat: -1,
         });
       }
-      // sets player physics
+
+    // sets player physics
      this.player.body.setGravityY(300);
      this.player.setCollideWorldBounds(true);
-  
+
      // adds collider between player and platforms
      this.physics.add.collider(this.player, this.platform);
-  
+
      // event handlers for arrow input
      this.moveLeft = false;
      this.moveRight = false;
-  
+
      this.leftArrow.on('pointerdown', () => {
      this.moveLeft = true;
    });
      this.leftArrow.on('pointerup', () => {
      this.moveLeft = false;
    });
-  
+
      this.rightArrow.on('pointerdown', () => { 
      this.moveRight = true;
    });
      this.rightArrow.on('pointerup', () => {
      this.moveRight = false;
    });
+   // Adds generated stars
    this.stars = this.physics.add.group({
     gravityY: 300,
-  });
-  
-  const createStar = () => {
+   });
+
+   const createStar = () => {
     const x = Math.random() * this.screenWidth;
     const star = this.stars.create(x, 0, 'star');
-  }
-  
-  const createStarLoop = this.time.addEvent({
+   }
+
+   const createStarLoop = this.time.addEvent({
     // random number between 1 and 1.2 seconds
     delay: Math.floor(Math.random() * (1200 - 1000 + 1)) + 1000,
     callback: createStar,
     callbackScope: this,
     loop: true,
-  });
+   });
+
+   // Adds generated bombs
+    this.bombs = this.physics.add.group({
+      gravityY: 900,
+    });
+
+    const createBomb = () => {
+      const x = Math.random() * this.screenWidth;
+      const bomb = this.bombs.create(x, 0, 'bomb');
+      bomb.setScale(2).refreshBody();
+    }
     
-  this.bombs = this.physics.add.group({
-    gravityY: 900,
-  });
-  
-  const createBomb = () => {
-    const x = Math.random() * this.screenWidth;
-    const bomb = this.bombs.create(x, 0, 'bomb');
-    bomb.setScale(2).refreshBody();
+    const createBombLoop = this.time.addEvent({
+      // random number between 4.5 and 5 seconds
+      delay: Math.floor(Math.random() * (5000 - 4500 + 1)) + 4500,
+      callback: createBomb,
+      callbackScope: this,
+      loop: true,
+    });
+
   }
-  
-  const createBombLoop = this.time.addEvent({
-    // random number between 4.5 and 5 seconds
-    delay: Math.floor(Math.random() * (5000 - 4500 + 1)) + 4500,
-    callback: createBomb,
-    callbackScope: this,
-    loop: true,
-  });
-     }
-  
-     update () {
-       if (this.moveLeft && !this.moveRight) {
-         this.player.setVelocityX(0 - 200);
-     
-         this.player.anims.play('left', true);
-       }
-       else if (this.moveRight && !this.moveLeft) {
-         this.player.setVelocityX(200);
-     
-         this.player.anims.play('right', true);
-       }
-  
-       else
-       {
-           this.player.setVelocityX(0);
-       
-           this.player.anims.play('turn');
-       }
-  
-     }
+
+  update () {
+    if (this.moveLeft && !this.moveRight) {
+      this.player.setVelocityX(0 - 200);
+
+      this.player.anims.play('left', true);
+    }
+    else if (this.moveRight && !this.moveLeft) {
+      this.player.setVelocityX(200);
+
+      this.player.anims.play('right', true);
+    }
+
+    else
+    {
+        this.player.setVelocityX(0);
+
+        this.player.anims.play('turn');
+    }
+
   }
+}

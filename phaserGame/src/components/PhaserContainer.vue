@@ -6,9 +6,7 @@
 </template>
 
 // src/components/PhaserContainer.vue
-
 <script setup lang="ts">
-
 import { onMounted, onUnmounted, ref, inject } from 'vue'
 import { IonButton } from '@ionic/vue';
 import { launch } from '@/game/game.js';

@@ -28,5 +28,11 @@ export class ScoreScene extends Scene {
             yoyo: true, // Reverse the tween on completion, creating the "pulse" effect
             repeat: -1 // Repeat forever
         })
+
+        // Add pointerdown handler to restart game
+        this.input.once('pointerdown', () => {
+            this.scene.stop('ScoreScene')
+            this.scene.start('PlayScene')
+        });
     }
 }

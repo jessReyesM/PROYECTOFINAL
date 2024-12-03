@@ -6,6 +6,8 @@
 
 <script setup lang="ts">
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { Capacitor } from '@capacitor/core';
+import { Preferences } from '@capacitor/preferences';
 
 import { provide, ref} from 'vue';
 const gameScores = ref<number[]>([])

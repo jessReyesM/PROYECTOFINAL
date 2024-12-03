@@ -17,15 +17,22 @@ export class PlayScene extends Scene {
       frameWidth: 32,
       frameHeight: 48,
     });
+    this.load.image("background", "assets/fondo.jpg"); // Cargar la imagen de fondo
   }
 
   create() {
-    // Configuración básica
+    // Establecer las dimensiones de la pantalla
     this.screenWidth = this.scale.width;
     this.screenHeight = this.scale.height;
     this.screenCenterX = this.screenWidth / 2;
     this.controlsAreaHeight = this.screenHeight * 0.2;
     this.gameAreaHeight = this.screenHeight - this.controlsAreaHeight;
+
+    // Cambiar el fondo de la escena
+    this.add.image(0, 0, "background")  // Usamos la imagen cargada "background".
+      .setOrigin(0, 0)  // Establece el origen en la esquina superior izquierda.
+      .setDisplaySize(this.screenWidth, this.screenHeight)  // Ajusta el tamaño al de la pantalla.
+      .setDepth(-1);  // Coloca el fondo detrás de otros elementos.
 
     // Escala del hongo
     const starSize = this.textures.get("star").getSourceImage().width; // Tamaño de la estrella
